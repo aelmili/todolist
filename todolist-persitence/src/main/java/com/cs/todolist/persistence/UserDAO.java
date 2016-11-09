@@ -1,5 +1,7 @@
 package com.cs.todolist.persistence;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -20,6 +22,11 @@ public class UserDAO {
 	@PersistenceContext
 	private EntityManager entityManager;
 
+	@Transactional
+	public void createUser(User user){
+		entityManager.persist(user);
+	}
+
 	public User findUserByCredentials(String email, String password) {
 		Query query = entityManager.createNamedQuery("findByCredentials");
 		query.setParameter("email", email);
@@ -33,8 +40,8 @@ public class UserDAO {
 		return (User) query.getSingleResult();
 	}
 
-	@Transactional
-	public void createUser(User user){
-		entityManager.persist(user);
+	public List<User> findAll(){
+		Query query = entityManager.createNamedQuery("findAll");
+		return query.getResultList();
 	}
 }//end UserDAO

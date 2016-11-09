@@ -1,5 +1,7 @@
 package com.cs.todolist.services;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.util.Date;
 
 import org.junit.Test;
@@ -16,12 +18,17 @@ public class CreateUsersServiceTest {
 	@Test
 	public void testCreateUser() {
 		//Arrange
+		String email = "a.b@c";
+		String firstName = "myFirstName";
+		String lastName = "myLastName";
+		String password = "password";
+		Date birthday = new Date();
 		
 		//Act
-		User user = new User("abdel.elmili@gmail.com", "password", "Abdel", "ELMILI", new Date(1987, 11, 14));
+		User user = new User(email, firstName, lastName, password, birthday);
 		createUsersService.createUser(user);
 		
-		// Assert
+		//Assert
+		assertNotNull(user.getId());
 	}
-
 }

@@ -97,6 +97,7 @@ public class Task {
 		this.id = id;
 	}
 
+	@Column(unique=true)
 	public String getTitle() {
 		return title;
 	}

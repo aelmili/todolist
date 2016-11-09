@@ -24,6 +24,7 @@ import javax.persistence.Table;
 			+ "WHERE entity.email=:email AND entity.password=:password"),
 	@NamedQuery(name="findById", query="SELECT entity FROM User entity "
 			+ "WHERE entity.id=:id"),
+	@NamedQuery(name="findAll", query="SELECT entity FROM User entity"),
 })
 
 @Entity
@@ -113,6 +114,7 @@ public class User {
 		this.tasks = tasks;
 	}
 
+	@Column(unique=true)
 	public String getEmail() {
 		return email;
 	}
