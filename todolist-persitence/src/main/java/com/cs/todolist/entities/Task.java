@@ -48,9 +48,9 @@ public class Task {
 	public Task(){
 	}
 
-	public Task(Date creationDate, User creator, Date deadline, String description, String title) {
+	public Task(User creator, Date deadline, String description, String title) {
 		super();
-		this.creationDate = creationDate;
+		this.creationDate = new Date();
 		this.creator = creator;
 		this.deadline = deadline;
 		this.description = description;

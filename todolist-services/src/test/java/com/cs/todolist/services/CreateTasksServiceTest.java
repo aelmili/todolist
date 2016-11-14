@@ -20,10 +20,9 @@ public class CreateTasksServiceTest {
 	public void testCreateTask() {
 		//Arrange
 		User user = getUsersService.getUserById(1);
-		Date creationDate = new Date();
 
 		//Act
-		Task task = new Task(creationDate, user, creationDate, "", "MySecondTask");
+		Task task = new Task(user, new Date(), "", "MySecondTask");
 		createTasksService.createTask(task);
 
 		//Assert

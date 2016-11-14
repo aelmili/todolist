@@ -13,6 +13,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * @author admformation
  * @version 1.0
@@ -52,6 +54,16 @@ public class User {
 		this.lastName = lastName;
 		this.password = password;
 		this.email = email;
+	}
+
+	public User(String email, String firstName, String lastName, String password, Date birthday, boolean admin) {
+		super();
+		this.birthday = birthday;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.password = password;
+		this.email = email;
+		this.admin = admin;
 	}
 
 	public boolean isAdmin() {
@@ -106,6 +118,7 @@ public class User {
 		this.registrationDate = date;
 	}
 
+	@JsonIgnore
 	@OneToMany(mappedBy="creator")
 	public List<Task> getCreatedTasks() {
 		return createdTasks;
@@ -115,6 +128,7 @@ public class User {
 		this.createdTasks = tasks;
 	}
 
+	@JsonIgnore
 	@OneToMany(mappedBy="assignee")
 	public List<Task> getAssignedTasks() {
 		return assignedTasks;
