@@ -4,10 +4,14 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import java.lang.String;
@@ -17,6 +21,16 @@ import java.lang.String;
  * @version 1.0
  * @created 08-nov.-2016 15:23:46
  */
+
+@NamedQueries({
+	@NamedQuery(name="findTaskByCreator", query="SELECT entity FROM Task entity "
+			+ "WHERE entity.creator=:creator"),
+	@NamedQuery(name="findTaskByAssignee", query="SELECT entity FROM Task entity "
+			+ "WHERE entity.assignee=:assignee"),
+	@NamedQuery(name="findTaskById", query="SELECT entity FROM Task entity "
+			+ "WHERE entity.id=:id"),
+	@NamedQuery(name="findAllTasks", query="SELECT entity FROM Task entity"),
+})
 
 @Entity
 @Table(catalog="todolist")
@@ -29,8 +43,19 @@ public class Task {
 	private String description;
 	private int id;
 	private String title;
+	private Status status;
 
 	public Task(){
+	}
+
+	public Task(Date creationDate, User creator, Date deadline, String description, String title) {
+		super();
+		this.creationDate = creationDate;
+		this.creator = creator;
+		this.deadline = deadline;
+		this.description = description;
+		this.title = title;
+		this.status = Status.NEW;
 	}
 
 	@ManyToOne
@@ -104,5 +129,14 @@ public class Task {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	@Enumerated(EnumType.STRING)
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 }//end Task

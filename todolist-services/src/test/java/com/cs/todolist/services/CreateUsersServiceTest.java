@@ -11,7 +11,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.cs.todolist.entities.User;
 
 public class CreateUsersServiceTest {
-
 	static ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 	static CreateUsersService createUsersService = (CreateUsersService) context.getBean("createUsersService");
 

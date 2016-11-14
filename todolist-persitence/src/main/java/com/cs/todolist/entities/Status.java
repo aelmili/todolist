@@ -12,6 +12,4 @@ public enum Status {
 	IN_PROGRESS,
 	RESOLVED,
 	CLOSED;
-
-	public Task m_Task;
 }

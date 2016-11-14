@@ -38,7 +38,8 @@ public class User {
 	private String password;
 	private String email;
 	private Date registrationDate;
-	private List<Task> tasks;
+	private List<Task> createdTasks;
+	private List<Task> assignedTasks;
 
 	public User(){
 		
@@ -105,13 +106,22 @@ public class User {
 		this.registrationDate = date;
 	}
 
-	@OneToMany(mappedBy="assignee")
-	public List<Task> getTasks() {
-		return tasks;
+	@OneToMany(mappedBy="creator")
+	public List<Task> getCreatedTasks() {
+		return createdTasks;
 	}
 
-	public void setTasks(List<Task> tasks) {
-		this.tasks = tasks;
+	public void setCreatedTasks(List<Task> tasks) {
+		this.createdTasks = tasks;
+	}
+
+	@OneToMany(mappedBy="assignee")
+	public List<Task> getAssignedTasks() {
+		return assignedTasks;
+	}
+
+	public void setAssignedTasks(List<Task> tasks) {
+		this.assignedTasks = tasks;
 	}
 
 	@Column(unique=true)
