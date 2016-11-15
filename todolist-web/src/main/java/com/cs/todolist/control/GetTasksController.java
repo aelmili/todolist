@@ -3,6 +3,7 @@ package com.cs.todolist.control;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,7 +14,8 @@ import com.cs.todolist.services.GetTasksService;
 import com.cs.todolist.services.GetUsersService;
 
 @RestController
-@RequestMapping("/tasks")
+@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/api/tasks")
 public class GetTasksController {
 	@Autowired GetTasksService getTasksService;
 	@Autowired GetUsersService getUsersService;
